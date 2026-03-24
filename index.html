@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+    <title>Dmitry Chashchin</title>
+</head>
+
+<body>
+    <div id="terminal">
+        <div class="terminal__header">
+            <div class="terminal__lang">
+                <span onclick="switchLang('en')" id="lang-en" class="lang-active">EN</span>
+                <span>|</span>
+                <span onclick="switchLang('ru')" id="lang-ru">RU</span>
+            </div>
+            <h1>Dmitry Chashchin</h1>
+            <span data-en="Fullstack developer" data-ru="Fullstack-разработчик">Fullstack developer</span>
+        </div>
+        <div class="terminal__content">
+            <div class="terminal__welcome">
+                <span class="typing" data-en="Please, type or click terminal commands:" data-ru="Введите или нажмите на команду:">Please, type or click terminal commands:</span>
+            </div>
+
+            <ul class="terminal__commands">
+                <li class="command-item" onclick="runCommand('about')">
+                    <span class="command-name">about</span>
+                </li>
+                <li class="command-item" onclick="runCommand('skills')">
+                    <span class="command-name">skills</span>
+                </li>
+                <li class="command-item" onclick="runCommand('projects')">
+                    <span class="command-name">projects</span>
+                </li>
+                <li class="command-item" onclick="runCommand('contact')">
+                    <span class="command-name">contact</span>
+                </li>
+                <li class="command-item" onclick="runCommand('resume')">
+                    <span class="command-name">resume</span>
+                </li>
+                <li class="command-item" onclick="runCommand('clear')">
+                    <span class="command-name">clear</span>
+                </li>
+            </ul>
+            <div class="terminal__prompt">
+                <!-- <span class="prompt-symbol">$</span> -->
+                <input type="text" class="command-input" autocomplete="off" autofocus />
+            </div>
+
+
+            <div class="terminal__output"></div>
+
+
+    
+            <div id="about-en" style="display: none;">
+                <div>My core expertise is backend development, but I also possess the complementary skills essential for end-to-end delivery: infrastructure and server setup, frontend implementation, and deployment.</div>
+                <div>I write code that is as simple and straightforward as possible, without unnecessary abstractions — easy to read and maintain.</div>
+                <div>In legacy codebases I navigate through dependency graphs, leave explanatory comments, and write concise documentation.</div>
+                <div>In my own projects I actively use both plain server-side code and frameworks, combined with a frontend and databases.</div>
+            </div>
+
+            <div id="about-ru" style="display: none;">
+                <div>Мои основные компетенции — это backend-разработка, однако я обладаю и сопутствующими цельной разработке навыками: настройка инфраструктуры и серверов, реализация фронтенда и деплой.</div>
+                <div>Я пишу код максимально простой и прямолинейный, без лишних абстракций, который несложно читать и поддерживать.</div>
+                <div>В legacy-коде ориентируюсь через графики зависимостей, оставляю поясняющие комментарии, пишу краткую документацию.</div>
+                <div>В своих проектах активно использую как чистый серверный код, так и фреймворки в связке с фронтендом и базами данных.</div>
+            </div>
+
+            <div id="skills" style="display: none;">
+                <ul class="skills-grid">
+                    <li onclick="runCommand('php')">#PHP</li>
+                    <li onclick="runCommand('mysql')">#MySQL</li>
+                    <li onclick="runCommand('linux')">#Linux</li>
+                    <li onclick="runCommand('javascript')">#JavaScript</li>
+                    <li onclick="runCommand('symfony')">#Symfony</li>
+                    <li onclick="runCommand('docker')">#Docker</li>
+                </ul>
+            </div>
+
+            <div id="php-en" style="display: none;">
+                <div>First contact : 2006</div>
+                <div>The main working language throughout my career, used both in its pure form and with frameworks.</div>
+            </div>
+
+            <div id="php-ru" style="display: none;">
+                <div>Первый контакт : 2006</div>
+                <div>Основной рабочий язык на протяжении всей карьеры, использую как в чистом виде, так и с фреймворками.</div>
+                <div>Разрабатывал платёжные системы, веб-приложения и плотно работал с legacy-кодом.</div>
+            </div>
+
+            <div id="javascript-en" style="display: none;">
+                <div>A reliable tool for client-side development — dashboards, real-time features, data validation.</div>
+                <div>Used across projects both with frameworks and as vanilla code.</div>
+            </div>
+
+            <div id="javascript-ru" style="display: none;">
+                <div>Надёжный инструмент для клиентской части — личные кабинеты, real-time функционал, валидация данных.</div>
+                <div>Применяю в проектах как с фреймворками, так и в чистом виде.</div>
+            </div>
+
+            <div id="mysql-en" style="display: none;">
+                <div>Database design and optimization for payment systems and e-commerce projects.</div>
+                <div>Comfortable with both relational databases — schema design, query tuning, migrations.</div>
+            </div>
+
+            <div id="mysql-ru" style="display: none;">
+                <div>Проектирование и оптимизация баз данных для платёжных систем и e-commerce проектов.</div>
+                <div>Уверенно работаю с реляционными БД — проектирование схем, оптимизация запросов, миграции.</div>
+            </div>
+
+            <div id="symfony-en" style="display: none;">
+                <div>The preferred framework for web projects — from e-commerce to business automation.</div>
+                <div>Experience with both legacy and modern versions, including API integrations and codebase modernization.</div>
+            </div>
+
+            <div id="symfony-ru" style="display: none;">
+                <div>Предпочитаемый фреймворк для веб-проектов — от e-commerce до бизнес-автоматизации.</div>
+                <div>Опыт с legacy и современными версиями, интеграция API и модернизация кодовой базы.</div>
+            </div>
+
+            <div id="docker-en" style="display: none;">
+                <div>Containerization of applications for development and deployment.</div>
+                <div>Setting up project infrastructure from scratch.</div>
+            </div>
+
+            <div id="docker-ru" style="display: none;">
+                <div>Контейнеризация приложений для разработки и деплоя.</div>
+                <div>Настройка инфраструктуры проектов с нуля.</div>
+            </div>
+
+            <div id="linux-en" style="display: none;">
+                <div>Server setup, web server configuration, writing scripts for automation and deployment.</div>
+            </div>
+
+            <div id="linux-ru" style="display: none;">
+                <div>Настройка серверов, конфигурация веб-сервера, написание скриптов для автоматизации и деплоя.</div>
+            </div>
+
+            <div id="contact-en" style="display: none;">
+                <div>Phone : <a href="tel:+79920153185">+7 992 015-31-85</a></div>
+                <div>Email : <a href="mailto:gsf2077@gmail.com">gsf2077@gmail.com</a></div>
+            </div>
+
+            <div id="contact-ru" style="display: none;">
+                <div>Телефон : <a href="tel:+79920153185">+7 992 015-31-85</a></div>
+                <div>Email : <a href="mailto:gsf2077@gmail.com">gsf2077@gmail.com</a></div>
+            </div>
+
+        </div>
+        <div class="terminal__footer">Powered by HTML / CSS / JS</div>
+    </div>
+</body>
+
+</html>

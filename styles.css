@@ -1,0 +1,253 @@
+:root {
+    --text-color: #44e936;
+    --bg-color: #171717;
+    --font-family: 'Andale Mono', AndaleMono, monospace;
+    --font-size-base: 1.2rem;
+    --spacing-unit: 8px;
+    --glow-color: rgba(68, 233, 54, 0.4);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    margin: 0;
+    padding: var(--spacing-unit);
+    list-style-type: none;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+a {
+    color: var(--text-color);
+}
+
+#terminal {
+    border: 3px solid silver;
+    margin: var(--spacing-unit);
+    padding: calc(var(--spacing-unit) * 2);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Scanline overlay */
+#terminal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px,
+        rgba(0, 0, 0, 0.08) 4px
+    );
+    pointer-events: none;
+}
+
+/* Scrollbar */
+#terminal::-webkit-scrollbar {
+    width: 6px;
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    border-radius: 3px;
+}
+
+#terminal {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-color) var(--bg-color);
+}
+
+.terminal__footer {
+    text-align: right;
+    margin-top: calc(var(--spacing-unit) * 2);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.terminal__header {
+    position: relative;
+    justify-content: space-between;
+    margin-bottom: calc(var(--spacing-unit) * 16);
+    text-align: center;
+}
+
+.terminal__lang {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.terminal__lang span:first-child,
+.terminal__lang span:last-child {
+    padding: 2px 4px;
+}
+
+.terminal__lang .lang-active {
+    text-decoration: underline;
+}
+
+.terminal__welcome {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation:
+        typing 1s steps(38, end),
+        blink 1s step-end infinite;
+}
+
+.terminal__commands {
+    list-style: none;
+}
+
+.terminal__commands li::before {
+    content: "> ";
+}
+
+.command-item {
+    opacity: 0;
+    animation: showCommand 0.2s steps(1, end) forwards;
+}
+
+.command-item:nth-child(1) {
+    animation-delay: 1.2s;
+}
+
+.command-item:nth-child(2) {
+    animation-delay: 1.3s;
+}
+
+.command-item:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+.command-item:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.command-item:nth-child(5) {
+    animation-delay: 1.6s;
+}
+
+.command-item:nth-child(6) {
+    animation-delay: 1.7s;
+}
+
+.terminal__commands li:hover {
+    text-decoration: underline;
+}
+
+/* Fix command-item inside output — don't hide with opacity animation */
+.command-output .command-item {
+    opacity: 1;
+    animation: none;
+    cursor: pointer;
+}
+
+.command-output .command-item:hover {
+    text-decoration: underline;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    padding: 0;
+    gap: var(--spacing-unit);
+}
+
+.skills-grid li {
+    cursor: pointer;
+}
+
+.skills-grid li:hover {
+    text-decoration: underline;
+}
+
+/* Spacing between output blocks */
+.command-output {
+    margin-top: var(--spacing-unit);
+}
+
+.terminal__prompt {
+    opacity: 1;
+    margin-top: var(--spacing-unit);
+}
+
+.terminal__prompt input {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    outline: none;
+    width: 100%;
+    caret-color: var(--text-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+/* Blinking cursor */
+.terminal__prompt input:focus {
+    animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% {
+        caret-color: var(--text-color);
+    }
+    50% {
+        caret-color: transparent;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    :root {
+        --font-size-base: 1rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 38ch;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes showCommand {
+    to {
+        opacity: 1;
+    }
+}
