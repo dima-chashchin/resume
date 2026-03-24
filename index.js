@@ -93,11 +93,9 @@ const commands = new Map([
   [
     "resume",
     () => {
-      const link = document.createElement("a");
       const isRu = currentLang === "ru";
-      link.href = isRu ? "resume-ru.md" : "resume.md";
-      link.download = isRu ? "Dmitry_Chashchin_Resume_RU.md" : "Dmitry_Chashchin_Resume.md";
-      link.click();
+      const url = isRu ? "Дмитрий_Чащин_Резюме.pdf" : "Dmitry_Chashchin_Resume.pdf";
+      window.open(url, "_blank");
       createNewPrompt();
     },
   ],
